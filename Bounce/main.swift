@@ -9,8 +9,9 @@
 import Foundation
 var toggle = true
 var movement = ""
+var jumpHeight = 0;
 var moveCount = 0
-func person(m:String){
+func person(m:String,j:Int){
     print(m+" --- ")
     print(m+"|***|")
     print(m+"|***|")
@@ -24,8 +25,9 @@ func person(m:String){
     print(m+" | | ")
     print(m+" | | ")
     print(m+" !_!_")
-    print(m+"     ")
-    print(m+"     ")
+    for _ in 1 ... j{
+        print(" ")
+    }
 }
 func personJump(m:String){
     print(m+" --- ")
@@ -43,7 +45,7 @@ func personJump(m:String){
     print(m+" !_!_")
 }
 
-func backPerson(m:String){
+func backPerson(m:String, j:Int){
     print(m+" --- ")
     print(m+"|***|")
     print(m+"|***|")
@@ -57,8 +59,9 @@ func backPerson(m:String){
     print(m+" | | ")
     print(m+" | | ")
     print(m+"_!_! ")
-    print(m+"     ")
-    print(m+"     ")
+    for _ in 1 ... j{
+        print(" ")
+    }
 }
 
 func backPersonJump(m:String){
@@ -77,11 +80,11 @@ func backPersonJump(m:String){
     print(m+"_!_! ")
 }
 while(true){
-    if(moveCount == 0){
+    if(moveCount <= 0){
         while(moveCount < 100){
-            
+            jumpHeight = Int.random(in: 1 ... 5)
             if(toggle){
-                person(m:movement)
+                person(m:movement,j:jumpHeight)
                 usleep(200000)
                 print("\u{001B}[2J")
                 toggle = false
@@ -91,13 +94,16 @@ while(true){
                 print("\u{001B}[2J")
                 toggle = true
             }
-            movement+=" "
-            moveCount+=1
+            for _ in 1 ... jumpHeight{
+                movement+=" "
+            }
+            moveCount+=jumpHeight
         }
     } else {
         while(moveCount > 0){
+            jumpHeight = Int.random(in: 1 ... 5)
             if(toggle){
-                backPerson(m:movement)
+                backPerson(m:movement, j:jumpHeight)
                 usleep(200000)
                 print("\u{001B}[2J")
                 toggle = false
@@ -112,7 +118,7 @@ while(true){
                 movement+=" "
 
             }
-            moveCount-=1
+            moveCount-=jumpHeight
             
         }
     }
