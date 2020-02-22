@@ -13,8 +13,8 @@ var jumpHeight = 0;
 var moveCount = 0
 func person(m:String,j:Int){
     print(m+" --- ")
-    print(m+"|***|")
-    print(m+"|***|")
+    print(m+"|***>")
+    print(m+"|***{")
     print(m+" --- ")
     print(m+"  |  ")
     print(m+" /|\\ ")
@@ -31,8 +31,8 @@ func person(m:String,j:Int){
 }
 func personJump(m:String){
     print(m+" --- ")
-    print(m+"|***|")
-    print(m+"|***|")
+    print(m+"|***>")
+    print(m+"|***[")
     print(m+" --- ")
     print(m+"  |  ")
     print(m+" /|\\ ")
@@ -47,8 +47,8 @@ func personJump(m:String){
 
 func backPerson(m:String, j:Int){
     print(m+" --- ")
-    print(m+"|***|")
-    print(m+"|***|")
+    print(m+"<***|")
+    print(m+"}***|")
     print(m+" --- ")
     print(m+"  |  ")
     print(m+" /|\\ ")
@@ -66,8 +66,8 @@ func backPerson(m:String, j:Int){
 
 func backPersonJump(m:String){
     print(m+" --- ")
-    print(m+"|***|")
-    print(m+"|***|")
+    print(m+"<***|")
+    print(m+"]***|")
     print(m+" --- ")
     print(m+"  |  ")
     print(m+" /|\\ ")
@@ -85,12 +85,12 @@ while(true){
             jumpHeight = Int.random(in: 1 ... 5)
             if(toggle){
                 person(m:movement,j:jumpHeight)
-                usleep(200000)
+                usleep(250000)
                 print("\u{001B}[2J")
                 toggle = false
             }else{
                 personJump(m:movement)
-                usleep(200000)
+                usleep(450000)
                 print("\u{001B}[2J")
                 toggle = true
             }
@@ -104,12 +104,12 @@ while(true){
             jumpHeight = Int.random(in: 1 ... 5)
             if(toggle){
                 backPerson(m:movement, j:jumpHeight)
-                usleep(200000)
+                usleep(250000)
                 print("\u{001B}[2J")
                 toggle = false
             }else{
                 backPersonJump(m:movement)
-                usleep(200000)
+                usleep(450000)
                 print("\u{001B}[2J")
                 toggle = true
             }
